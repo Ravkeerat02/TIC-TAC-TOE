@@ -26,56 +26,10 @@
           <div class="cell" id="8"></div>
         </div>
       </div>
-      <script>
-        const board = [null, null, null, null, null, null, null, null, null];
-let currentPlayer = 'X';
-
-const cells = document.querySelectorAll('.cell');
-cells.forEach(cell => {
-  cell.addEventListener('click', () => {
-    if (!board[cell.id]) {
-      board[cell.id] = currentPlayer;
-      cell.innerText = currentPlayer;
-      cell.classList.add(currentPlayer);
-      if (checkWin()) {
-        alert(`${currentPlayer} wins!`);
-        reset();
-      } else if (board.every(cell => cell !== null)) {
-        alert(`It's a tie!`);
-        reset();
-      } else {
-        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-      }
-    }
-  });
-});
-
-function checkWin() {
-  const winningPositions = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  return winningPositions.some(position => {
-    const [a, b, c] = position;
-    return board[a] && board[a] === board[b] && board[a] === board[c];
-  });
-}
-
-function reset() {
-  board.fill(null);
-  cells.forEach(cell => {
-    cell.innerText = '';
-    cell.classList.remove('X', 'O');
-  });
-  currentPlayer = 'X';
-}
-
-      </script>
+      <div class="message"></div>
+      <div class="restart-container">
+        <button class="restart">Restart Game</button>
+      </div>
+      <script src="script.js"></script>
 </body>
 </html>
