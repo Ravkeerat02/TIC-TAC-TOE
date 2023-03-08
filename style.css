@@ -1,12 +1,22 @@
-.tic-tac-toe {
+body {
+    background-color: #f1f1f1;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  h1 {
+    margin-top: 30px;
+  }
+  
+  .tic-tac-toe {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
+    border: 2px solid #333;
     width: 300px;
     height: 300px;
-    margin: 0 auto;
+    margin: 50px auto;
   }
   
   .row {
@@ -17,11 +27,19 @@
   .cell {
     width: 100px;
     height: 100px;
-    border: 1px solid black;
-    font-size: 50px;
+    border: 1px solid #333;
+    font-size: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+  }
+  
+  .X {
+    color: #ff4c4c;
+  }
+  
+  .O {
+    color: #4c4cff;
   }
   
