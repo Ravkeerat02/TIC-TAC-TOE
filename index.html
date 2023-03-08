@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicTacToe</title>
+</head>
+<body>
+    <h1>Tic Tac Toe</h1>
+    <div class="tic-tac-toe">
+        <div class="row">
+          <div class="cell" id="0"></div>
+          <div class="cell" id="1"></div>
+          <div class="cell" id="2"></div>
+        </div>
+        <div class="row">
+          <div class="cell" id="3"></div>
+          <div class="cell" id="4"></div>
+          <div class="cell" id="5"></div>
+        </div>
+        <div class="row">
+          <div class="cell" id="6"></div>
+          <div class="cell" id="7"></div>
+          <div class="cell" id="8"></div>
+        </div>
+      </div>
+      <script>
+        const board = [null, null, null, null, null, null, null, null, null];
+let currentPlayer = 'X';
+
+const cells = document.querySelectorAll('.cell');
+cells.forEach(cell => {
+  cell.addEventListener('click', () => {
+    if (!board[cell.id]) {
+      board[cell.id] = currentPlayer;
+      cell.innerText = currentPlayer;
+      cell.classList.add(currentPlayer);
+      if (checkWin()) {
+        alert(`${currentPlayer} wins!`);
+        reset();
+      } else if (board.every(cell => cell !== null)) {
+        alert(`It's a tie!`);
+        reset();
+      } else {
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      }
+    }
+  });
+});
+
+function checkWin() {
+  const winningPositions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  return winningPositions.some(position => {
+    const [a, b, c] = position;
+    return board[a] && board[a] === board[b] && board[a] === board[c];
+  });
+}
+
+function reset() {
+  board.fill(null);
+  cells.forEach(cell => {
+    cell.innerText = '';
+    cell.classList.remove('X', 'O');
+  });
+  currentPlayer = 'X';
+}
+
+      </script>
+</body>
+</html>
